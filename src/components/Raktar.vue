@@ -10,12 +10,26 @@
             <td> {{adat.price}} </td>
             <td> {{adat.quantity}} </td>
         </tr>
+        <tr>
+            <td><input type="text" v-model="title"></td>
+            <td><input type="number" v-model="price"></td>
+            <td><input type="number" v-model="quantity"></td>
+            <td><button @click="addItem">Add</button></td>
+        </tr>
     </table>
 </template>
 
 <script>
 export default {
-    props: ['adatok']
+    props: ['adatok'],
+    methods: {
+         addItem(){
+            this.$emit("addItem", { title: this.title, price: this.price, quantity: this.quantity})
+            this.title = ""
+            this.price = ""
+            this.quantity = ""
+        }
+    }
 }
 </script>
 

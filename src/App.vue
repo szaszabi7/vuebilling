@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <Raktar :adatok="rows"/>
+     <Raktar :adatok="rows" @addItem="add"/>
   </div>
 </template>
 
@@ -36,6 +36,11 @@ export default {
           quantity: 321
         },
       ]
+    }
+  },
+  methods: {
+    add(e) {
+      this.rows.push({title: e.title, price: e.price, quantity: e.quantity})
     }
   }
 }
