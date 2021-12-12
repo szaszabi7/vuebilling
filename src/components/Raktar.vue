@@ -4,14 +4,10 @@
             <th>Title</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Összérték</th>
             <th>Operations</th>
         </tr>
-        <tr v-for="adat in adatok" :key="adat.title">
-            <td> {{adat.title}} </td>
-            <td> {{adat.price}} </td>
-            <td> {{adat.quantity}} </td>
-            <td><button>X</button><button>Edit</button></td>
-        </tr>
+        <Item v-for="adat in adatok" :key="adat.title" :adat="adat" @deleteItem="deleteItem"/>
         <tr>
             <td><input type="text" v-model="title"></td>
             <td><input type="number" v-model="price"></td>
@@ -22,14 +18,22 @@
 </template>
 
 <script>
+import Item from "./Item.vue";
+
 export default {
     props: ['adatok'],
+    components:{
+        Item
+    },
     methods: {
-         addItem(){
-            this.$emit("addItem", { title: this.title, price: this.price, quantity: this.quantity})
+        addItem() {
+            this.$emit("addItem", {title: this.title, price: this.price, quantity: this.quantity})
             this.title = ""
             this.price = ""
             this.quantity = ""
+        },
+        deleteItem(e){
+            this.$emit("deleteItem", e)
         }
     }
 }

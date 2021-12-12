@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <Raktar :adatok="rows" @addItem="add"/>
+     <Raktar :adatok="rows" @addItem="add" @deleteItem="deleteItem"/>
   </div>
 </template>
 
@@ -41,6 +41,11 @@ export default {
   methods: {
     add(e) {
       this.rows.push({title: e.title, price: e.price, quantity: e.quantity})
+    },
+    deleteItem(e){
+      this.rows = this.rows.filter(function(sor) {
+        return sor.title != e
+      })
     }
   }
 }
