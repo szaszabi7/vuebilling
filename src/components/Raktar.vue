@@ -4,11 +4,13 @@
             <th>Title</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Operations</th>
         </tr>
         <tr v-for="adat in adatok" :key="adat.title">
             <td> {{adat.title}} </td>
             <td> {{adat.price}} </td>
             <td> {{adat.quantity}} </td>
+            <td><button>X</button><button>Edit</button></td>
         </tr>
         <tr>
             <td><input type="text" v-model="title"></td>
