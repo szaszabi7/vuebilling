@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-     <Raktar :adatok="rows" @addItem="add" @deleteItem="deleteItem"/>
+     <Raktar :adatok="rows" @addItem="add" @deleteItem="deleteItem" :osszertek="osszertek"/>
   </div>
 </template>
 
 <script>
 import Raktar from './components/Raktar.vue'
-
 
 export default {
   name: 'App',
@@ -36,18 +35,30 @@ export default {
           price: 45120,
           quantity: 321
         },
-      ]
+      ],
+      osszertek: 0
     }
   },
   methods: {
     add(e) {
       this.rows.push({title: e.title, price: e.price, quantity: e.quantity})
+      this.osszertekCalc()
     },
     deleteItem(e){
       this.rows = this.rows.filter(function(sor) {
         return sor.title != e
       })
+      this.osszertekCalc()
+    },
+    osszertekCalc() {
+      this.osszertek = 0
+      for(let i = 0; i < this.rows.length; i++){
+        this.osszertek += (this.rows[i].price * this.rows[i].quantity)
+      }
     }
+  },
+  created() {
+    this.osszertekCalc()
   }
 }
 </script>

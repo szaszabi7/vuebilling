@@ -8,6 +8,10 @@
             <th>Operations</th>
         </tr>
         <Item v-for="adat in adatok" :key="adat.title" :adat="adat" @deleteItem="deleteItem"/>
+        <tr id="osszertek">
+            <td colspan="3">Összérték:</td>
+            <td> {{osszertek}} </td>
+        </tr>
         <tr>
             <td><input type="text" v-model="title"></td>
             <td><input type="number" v-model="price"></td>
@@ -21,7 +25,7 @@
 import Item from "./Item.vue";
 
 export default {
-    props: ['adatok'],
+    props: ['adatok', 'osszertek'],
     components:{
         Item
     },
@@ -49,5 +53,9 @@ export default {
 
     th {
         border-bottom: 2px solid black;
+    }
+
+    #osszertek td{
+        padding-top: 1em;
     }
 </style>
