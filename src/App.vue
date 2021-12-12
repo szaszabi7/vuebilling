@@ -7,6 +7,7 @@
 <script>
 import Raktar from './components/Raktar.vue'
 
+
 export default {
   name: 'App',
   components: {
